@@ -4,49 +4,18 @@
 
 gumble is a [Mumble](https://mumble.info/) client implementation in Go
 
-## Sub-projects
+## Added Features to Original Gumble
 
-- gumble ([docs](https://pkg.go.dev/layeh.com/gumble/gumble))
-    - Client library
-- gumbleopenal ([docs](https://pkg.go.dev/layeh.com/gumble/gumbleopenal))
-    - [OpenAL](http://kcat.strangesoft.net/openal.html) audio system for gumble
-- gumbleffmpeg ([docs](https://pkg.go.dev/layeh.com/gumble/gumbleffmpeg))
-    - [ffmpeg](https://www.ffmpeg.org/) audio source for gumble
-- gumbleutil ([docs](https://pkg.go.dev/layeh.com/gumble/gumbleutil))
-    - Extras that can make working with gumble easier
+- AddListeningChannelID
+- RemoveListeningChannelID
+- talkkonnect is able to listen to multiple channels at once using this new addition to the gumble library
 
-## Example
-
-```go
-package main
-
-import (
-  "layeh.com/gumble/gumble"
-  "layeh.com/gumble/gumbleutil"
-)
-
-func main() {
-  gumbleutil.Main(gumbleutil.Listener{
-    UserChange: func(e *gumble.UserChangeEvent) {
-      if e.Type.Has(gumble.UserChangeConnected) {
-        e.User.Send("Welcome to the server, " + e.User.Name + "!")
-      }
-    },
-  })
-}
-```
-
-## Related projects
-
-- [barnard](https://layeh.com/barnard)
-    - terminal-based Mumble client
-- [piepan](https://layeh.com/piepan)
-    - an easy to use framework for writing Mumble bots using Lua
+## Modified By Suvir Kumar for talkkonnect
 
 ## License
 
 MPL 2.0
 
-## Author
+## Original Author
 
 Tim Cooper (<tim.cooper@layeh.com>)

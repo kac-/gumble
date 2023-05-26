@@ -1,4 +1,4 @@
-package gumbleffmpeg
+package gumbleffmpeg // import "github.com/talkkonnect/gumble/gumbleffmpeg"
 
 import (
 	"encoding/binary"
@@ -9,8 +9,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"time"
-
-	"layeh.com/gumble/gumble"
+	"github.com/talkkonnect/gumble/gumble"
 )
 
 // State represents the state of a Stream.
@@ -51,10 +50,10 @@ type Stream struct {
 }
 
 // New returns a new Stream for the given gumble Client and Source.
-func New(client *gumble.Client, source Source) *Stream {
+func New(client *gumble.Client, source Source,vol float32) *Stream {
 	return &Stream{
 		client:  client,
-		Volume:  1.0,
+		Volume:  vol,
 		Source:  source,
 		Command: "ffmpeg",
 		pause:   make(chan struct{}),
@@ -87,6 +86,7 @@ func (s *Stream) Play() error {
 	if s.Offset > 0 {
 		args = append([]string{"-ss", strconv.FormatFloat(s.Offset.Seconds(), 'f', -1, 64)}, args...)
 	}
+
 	args = append(args, "-ac", strconv.Itoa(gumble.AudioChannels), "-ar", strconv.Itoa(gumble.AudioSampleRate), "-f", "s16le", "-")
 	cmd := exec.Command(s.Command, args...)
 	var err error
