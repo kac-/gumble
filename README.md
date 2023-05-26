@@ -4,6 +4,14 @@
 
 gumble is a [Mumble](https://mumble.info/) client implementation in Go
 
+## Added Features to Original Gumble
+
+- AddListeningChannelID
+- RemoveListeningChannelID
+- talkkonnect is able to listen to multiple channels at once using this new addition to the gumble library
+
+## Modified By Suvir Kumar for talkkonnect
+
 ## Sub-projects
 
 - gumble ([docs](https://pkg.go.dev/layeh.com/gumble/gumble))
